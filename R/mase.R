@@ -165,10 +165,10 @@ P_from_g.ase <- function(g_ase) {
 #' @export
 eig_embedding <- function(A, d = NA, d.max = ncol(A), diag.augment = FALSE, elbow = 1) {
   n <- ncol(A)
-  if(diag.augment & sum(abs(diag(A))) == 0) {
+  if(diag.augment & sum(abs(Matrix::diag(A))) == 0) {
     deg = Matrix::colSums(A)
     n = ncol(A)
-    diag(A) = deg / (n-1)
+    Matrix::diag(A) = deg / (n-1)
   }
   if(is.na(d)) {
     eig <- rARPACK::eigs(as(A, "dgeMatrix"), d.max)
